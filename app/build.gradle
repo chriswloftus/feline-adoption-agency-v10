@@ -1,0 +1,134 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace "uk.ac.aber.dcs.cs31620.faa"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "uk.ac.aber.dcs.cs31620.faa"
+        minSdk 27
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // Run code coverage reports by default on debug builds.
+            testCoverageEnabled = true
+        }
+    }
+    flavorDimensions "testing"
+    productFlavors {
+        in_memory_database {
+            dimension "testing"
+        }
+        persistent_database {
+            dimension "testing"
+        }
+    }
+
+    // Remove inMemoryTestingRelease as it's not needed.
+    android.variantFilter { variant ->
+        if (variant.buildType.name == 'release'
+                && variant.getFlavors().get(0).name == 'in_memory_database') {
+            variant.setIgnore(true)
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += [
+                '-opt-in=androidx.compose.material3' +
+                        '.ExperimentalMaterial3Api'
+        ]
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.0'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
+}
+
+
+dependencies {
+    def composeBom = platform('androidx.compose:compose-bom:2023.08.00')
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
+    implementation 'androidx.activity:activity-compose:1.7.2'
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.material:material-icons-extended'
+
+    implementation 'androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha12'
+    // Compose navigation not in BOM
+    implementation 'androidx.navigation:navigation-compose:2.7.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    androidTestImplementation 'androidx.navigation:navigation-testing:2.7.3'
+    androidTestImplementation 'com.google.truth:truth:1.1.3'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // Room
+    implementation 'androidx.room:room-runtime:2.5.2'
+    implementation 'androidx.room:room-ktx:2.5.2'
+    kapt 'androidx.room:room-compiler:2.5.2'
+
+    // LiveData
+    implementation 'androidx.compose.runtime:runtime-livedata'
+
+    // ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose'
+
+    // Glide for Compose
+    implementation 'com.github.bumptech.glide:compose:1.0.0-alpha.5'
+
+    // Date and time library
+    implementation 'io.github.vanpra.compose-material-dialogs:datetime:0.9.0'
+}
