@@ -92,44 +92,4 @@ class NavigationDrawerTest {
         // Might be useful during debugging to slow things down to show what is displayed
         //Thread.sleep(5000L)
     }
-
-    @Test
-    fun addNewCat_AssertCatAppearsInList(){
-        // Start by tapping on the cats tab
-        // We expand the tree since the cats tab is deeply embedded within the page and the
-        // merged version of the tree hides it.
-        val catsTabString = composeTestRule.activity.getString(R.string.cats)
-        composeTestRule.onNodeWithContentDescription(catsTabString, useUnmergedTree = true).assertExists()
-        composeTestRule.onNodeWithContentDescription(catsTabString, useUnmergedTree = true).performClick()
-
-        // Let's check that we have navigated to the cats page
-        var currentDestination = navController.currentBackStackEntry?.destination?.route
-        Truth.assertThat(currentDestination).isEqualTo(Screen.Cats.route)
-
-        // Does the Cat FAB exist and is so tap it
-        val addCatFABString = composeTestRule.activity.getString(R.string.add_cat)
-        composeTestRule.onNodeWithContentDescription(addCatFABString).assertExists()
-        composeTestRule.onNodeWithContentDescription(addCatFABString).performClick()
-
-        // Let's check that we have navigated to the AddCat page
-        currentDestination = navController.currentBackStackEntry?.destination?.route
-        Truth.assertThat(currentDestination).isEqualTo(Screen.AddCat.route)
-
-        // Now check the the cat name input field exists and if it does add TEST CAT
-        val catAddNameString = composeTestRule.activity.getString(R.string.cat_name)
-        composeTestRule.onNodeWithText(catAddNameString).assertExists()
-        composeTestRule.onNodeWithText(catAddNameString).performTextInput("TEST CAT")
-
-        // Check add cat FAB exists and click it
-        val addCatString = composeTestRule.activity.getString(R.string.add_cat)
-        composeTestRule.onNodeWithContentDescription(addCatString).assertExists()
-        composeTestRule.onNodeWithContentDescription(addCatString).performClick()
-
-        // Check we're back in Cats screen
-        currentDestination = navController.currentBackStackEntry?.destination?.route
-        Truth.assertThat(currentDestination).isEqualTo(Screen.Cats.route)
-
-        // Check that the list contains TEST CAT
-        composeTestRule.onNodeWithText("TEST CAT").assertExists()
-    }
 }

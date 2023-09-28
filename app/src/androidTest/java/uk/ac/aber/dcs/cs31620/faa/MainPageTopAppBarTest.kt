@@ -26,9 +26,5 @@ class MainPageTopAppBarTest {
         Thread.sleep(1000L)
 
         androidComposeTestRule.onNodeWithContentDescription("Navigation drawer menu").assertExists()
-
-        //val burgerButtonString = composeTestRule.activity.getString(R.string.nav_drawer_menu)
-        //androidComposeTestRule.onNodeWithContentDescription(burgerButtonString).assertIsOff()
-
     }
 }
