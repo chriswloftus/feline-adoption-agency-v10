@@ -69,13 +69,13 @@ class NavigationDrawerTest {
         val burgerButtonString = composeTestRule.activity.getString(R.string.nav_drawer_menu)
 
         // Start by opening the navigation drawer by clicking on the burger button
-        composeTestRule.onNodeWithContentDescription(burgerButtonString).assertExists()
-        composeTestRule.onNodeWithContentDescription(burgerButtonString).performClick()
+        composeTestRule.onNodeWithContentDescription(burgerButtonString)
+            .assertExists().performClick()
 
         // We now check the login button exists and then click it to open the login page
         val loginButtonString = composeTestRule.activity.getString(R.string.login)
-        composeTestRule.onNodeWithContentDescription(loginButtonString).assertExists()
-        composeTestRule.onNodeWithContentDescription(loginButtonString).performClick()
+        composeTestRule.onNodeWithContentDescription(loginButtonString)
+            .assertExists().performClick()
 
         // Let's check that we have navigated to the login page
         val currentDestination = navController.currentBackStackEntry?.destination?.route
