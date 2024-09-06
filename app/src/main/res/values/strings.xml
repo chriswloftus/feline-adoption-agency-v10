@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Feline Adoption Agency</string>
+    <string name="nav_drawer_menu">Navigation drawer menu</string>
+    <string name="home">Home</string>
+    <string name="cats">Cats</string>
+    <string name="login">Login</string>
+    <string name="help">Help</string>
+    <string name="feedback">Feedback</string>
+    <string name="small_kitten">Picture of startled kitten</string>
+    <string name="login_email">Login email:</string>
+    <string name="cancel">Cancel</string>
+    <string name="home_picture_image">Image of kittens</string>
+    <string name="welcome">Our mission is to find caring homes for our cats and kittens. Sign-up to start the process.</string>
+    <string name="featured_cat_title">This month\'s featured cat:</string>
+    <string name="featured_cat_description">Image of this month\'s featured cat</string>
+    <string name="dropdown_icon">Dropdown icon</string>
+    <string name="distance">Search: %1$d mi</string>
+    <string name="distance_icon">Icon representing distance</string>
+    <string name="distance_to_travel_title">Distance to travel</string>
+    <string name="distance_to_travel_dialog_instructions">Indicate how far you are willing to travel to adopt</string>
+    <string name="confirm_button">Confirm</string>
+    <string name="dismiss_button">Dismiss</string>
+    <string name="cat_image">Image of cat</string>
+    <string name="remove_cat">Remove cat button</string>
+    <string name="add_cat">Add cat FAB</string>
+
+    <!-- Intent support -->
+    <string name="action_view_cats">uk.ac.aber.dcs.cs31620.faa.action.VIEW_CATS</string>
+    <string name="cats_uri">http://faa.cs31620.dcs.aber.ac.uk/cats</string>
+    <string name="default_image_path">file:///android_asset/images/default_image.png</string>
+    <string name="addCat">Add cat</string>
+    <string name="goBack">Go back button</string>
+
+    <!-- Add cat page -->
+    <string name="cat_picture_image">Picture of new cat</string>
+    <string name="cat_name">Name:</string>
+    <string name="catGender">Gender:</string>
+    <string name="catAge">Age:</string>
+    <string name="catBreed">Breed:</string>
+    <string name="new_cat_description">Enter description here</string>
+    <string name="dob">Date of birth: %1$s</string>
+    <string name="enterImageMsg">Tap image to add/replace image</string>
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="cannot_create_image_file">Cannot take a picture, possibly insufficient space</string>
+    <string name="missing_data">Name and date fields must have values</string>
+    <string name="cannotTakePicture">Unable to start Camera app</string>
+    <string name="ok">OK</string>
+    <string name="pickDate">Pick a date</string>
+    <string name="enterDescription">Enter description:</string>
+
+    <!-- Arrays of values -->
+    <string-array name="gender_array">
+        <item>Any gender</item>
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string-array name="age_range_array">
+        <item>Any age</item>
+        <item>Up to 1 year</item>
+        <item>1 > 2 years</item>
+        <item>2 &#8211; 5 years</item>
+        <item>Over 5 years</item>
+    </string-array>
+
+    <string-array name="breed_array">
+        <item>Any breed</item>
+        <item>Abyssinian</item>
+        <item>Balinese</item>
+        <item>Bengal</item>
+        <item>Birman</item>
+        <item>British Shorthair</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>
